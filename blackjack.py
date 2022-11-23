@@ -59,3 +59,58 @@
 
 #Hint 14: Ask the user if they want to restart the game. If they answer yes, clear the console and start a new game of blackjack and show the logo from art.py.
 
+#Blackjack
+import random 
+
+def deal_card():
+    """Selects random card from a list of cards"""
+    cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+    random_card = random.choice(cards)
+    return random_card
+
+def calculate_score():
+    """Calculate scores"""
+    user_sum = sum(user_cards)
+    computer_sum = sum(computer_cards)
+    
+    if user_sum == 21:
+        user_sum = 0
+    elif computer_sum == 21:
+        computer_sum = 0
+
+    if user_sum > 21:
+        for ace in user_cards:
+            if (ace == 11):
+                user_cards.remove(11)
+                user_cards.append(1)
+
+    if computer_sum > 21:
+        for ace in computer_cards:
+            if (ace == 11):
+                computer_cards.remove(11)
+                computer_cards.append(1)
+
+    if user_sum == 0 or computer_sum == 0 or user_sum > 21:
+        print("Game over")
+    else:
+        response = input("Do you want to draw another card? Type yes or no: ")
+        if response == "yes":
+            user_cards.append(deal_card())
+            computer_cards.append(deal_card())
+            print(user_cards)
+            print(computer_cards)
+            calculate_score()
+        if respone == "no":
+            
+
+user_cards = []
+for card in range(0,2):
+    user_cards.append(deal_card())
+
+computer_cards = []
+for card in range(0,2):
+    computer_cards.append(deal_card())
+
+print(user_cards)
+print(computer_cards)
+calculate_score()
